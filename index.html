@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>D.F.P. AI</title>
+
+<style>
+:root{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,system-ui,sans-serif;
+  color-scheme:dark;
+  --bg:#07080c;
+  --panel:#0d1017;
+  --line:#202531;
+  --text:#f5f7fb;
+  --muted:#8992a3;
+  --accent:#8b5cf6;
+  --accent2:#22d3ee;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+}
+
+#app{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 75% 8%,rgba(139,92,246,.16),transparent 28%),
+    radial-gradient(circle at 15% 85%,rgba(34,211,238,.08),transparent 25%),
+    var(--bg);
+}
+
+.top{
+  height:68px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  position:sticky;
+  top:0;
+  background:rgba(7,8,12,.82);
+  backdrop-filter:blur(18px);
+  z-index:3;
+}
+
+.brand{
+  display:flex;
+  gap:11px;
+  align-items:center;
+  font-weight:800;
+}
+
+.logo{
+  width:35px;
+  height:35px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  box-shadow:0 8px 30px rgba(139,92,246,.28);
+  font-size:14px;
+}
+
+.brand span{font-size:17px}
+
+.menu{
+  width:38px;
+  height:38px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#0b0e14;
+  color:#fff;
+  font-size:19px;
+}
+
+.hero{
+  max-width:920px;
+  margin:0 auto;
+  padding:82px 22px 30px;
+}
+
+.eyebrow{
+  font-size:12px;
+  color:#aab2c1;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:16px;
+}
+
+.hero h1{
+  font-size:clamp(42px,8vw,76px);
+  line-height:.98;
+  letter-spacing:-4px;
+  margin:0;
+  max-width:760px;
+}
+
+.hero h1 b{
+  background:linear-gradient(100deg,#fff 10%,#b89cff 52%,#72e6f5);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+  max-width:620px;
+  margin:22px 0 32px;
+}
+
+.chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.chip{
+  border:1px solid var(--line);
+  background:#0d1118;
+  color:#cbd1dc;
+  border-radius:999px;
+  padding:10px 14px;
+  font-size:13px;
+}
+
+.chat{
+  max-width:920px;
+  margin:30px auto 0;
+  padding:0 22px 35px;
+}
+
+.box{
+  background:linear-gradient(180deg,#11151e,#0c0f15);
+  border:1px solid #2a3040;
+  border-radius:24px;
+  padding:15px;
+  box-shadow:0 22px 80px rgba(0,0,0,.35);
+}
+
+textarea{
+  width:100%;
+  height:92px;
+  resize:none;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#fff;
+  font:inherit;
+  font-size:16px;
+  padding:5px;
+}
+
+.bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.hint{
+  font-size:12px;
+  color:#697284;
+}
+
+.send{
+  border:0;
+  border-radius:15px;
+  padding:12px 18px;
+  background:#fff;
+  color:#08090c;
+  font-weight:750;
+}
+
+.send:active{
+  transform:scale(.98);
+}
+
+.response{
+  display:none;
+  margin-top:16px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  background:#0b0e14;
+  color:#dce1ea;
+  line-height:1.6;
+}
+
+.response.show{
+  display:block;
+}
+
+.footer{
+  text-align:center;
+  color:#4f5868;
+  font-size:12px;
+  padding:5px 20px 30px;
+}
+
+@media(max-width:600px){
+  .hero{
+    padding-top:62px;
+  }
+
+  .hero h1{
+    letter-spacing:-2.5px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .top{
+    padding:0 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<header class="top">
+  <div class="brand">
+    <div class="logo">D·F·P</div>
+    <span>D.F.P. AI</span>
+  </div>
+
+  <button class="menu" aria-label="Menu">•••</button>
+</header>
+
+<main>
+
+<section class="hero">
+
+  <div class="eyebrow">
+    Diamond First Project
+  </div>
+
+  <h1>
+    Think faster.<br>
+    <b>Build bigger.</b>
+  </h1>
+
+  <p>
+    Your personal AI workspace for questions, ideas, writing,
+    learning, technology and business. Simple on the surface.
+    Powerful underneath.
+  </p>
+
+  <div class="chips">
+    <span class="chip">Ask anything</span>
+    <span class="chip">Write & create</span>
+    <span class="chip">Learn</span>
+    <span class="chip">Brainstorm</span>
+    <span class="chip">Tech help</span>
+  </div>
+
+</section>
+
+<section class="chat">
+
+  <div class="box">
+
+    <textarea
+      id="q"
+      placeholder="What are we building today?"
+    ></textarea>
+
+    <div class="bottom">
+
+      <span class="hint">
+        D.F.P. AI · Your ideas, your workspace.
+      </span>
+
+      <button class="send" id="send">
+        Ask D.F.P. ↗
+      </button>
+
+    </div>
+
+    <div class="response" id="r"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+<div class="footer">
+  D.F.P. AI · Diamond First Project
+</div>
+
+</div>
+
+<script>
+
+const q=document.querySelector('#q');
+const r=document.querySelector('#r');
+
+document.querySelector('#send').onclick=()=>{
+
+  const v=q.value.trim();
+
+  if(!v)return;
+
+  r.textContent=
+  'Got it. D.F.P. AI is ready to turn that idea into a clear next step. The real AI connection comes in the next build stage.';
+
+  r.classList.add('show');
+
+};
+
+</script>
+
+</body>
+</html>
