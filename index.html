@@ -302,23 +302,46 @@ textarea{
 </div>
 
 <script>
+const q = document.querySelector("#q");
+const r = document.querySelector("#r");
+const send = document.querySelector("#send");
 
-const q=document.querySelector('#q');
-const r=document.querySelector('#r');
+send.onclick = async () => {
+  const message = q.value.trim();
 
-document.querySelector('#send').onclick=()=>{
+  if (!message) return;
 
-  const v=q.value.trim();
+  r.classList.add("show");
+  r.textContent = "D.F.P. is thinking...";
 
-  if(!v)return;
+  send.disabled = true;
 
-  r.textContent=
-  'Got it. D.F.P. AI is ready to turn that idea into a clear next step. The real AI connection comes in the next build stage.';
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: message
+      })
+    });
 
-  r.classList.add('show');
+    const data = await response.json();
 
+    if (!response.ok) {
+      throw new Error(data.error || "Something went wrong.");
+    }
+
+    r.textContent = data.answer;
+
+  } catch (error) {
+    r.textContent =
+      "D.F.P. couldn't connect to its AI brain. Please try again.";
+  }
+
+  send.disabled = false;
 };
-
 </script>
 
 </body>
