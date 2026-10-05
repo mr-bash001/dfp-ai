@@ -17,7 +17,7 @@ export default async function handler(req, res) {
         "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: "gpt-5.6-mini",
+        gpt-5-mini,
         instructions:
           "You are D.F.P. AI, the helpful AI assistant created as Diamond First Project. Be clear, useful, friendly, and honest. Do not claim to have abilities you do not have.",
         input: message
